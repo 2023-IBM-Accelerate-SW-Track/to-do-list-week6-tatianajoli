@@ -17,7 +17,7 @@ export default class NavbarComp extends Component {
         return (
             <Router>
             <div>
-            <Navbar bg="dark" variant={"dark"} expand="lg">
+            <Navbar variant={"dark"} expand="lg">
                 <Container>
                     {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,8 +25,8 @@ export default class NavbarComp extends Component {
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to={"/"}> Home </Nav.Link>
                         <Nav.Link as={Link} to={"/about"}>About</Nav.Link>
-                        <Nav.Link as={Link} to={"/TodoListAll"}>TodoPage</Nav.Link>
-                        <Nav.Link as={Link} to={"/SearchPage"}>SearchPage</Nav.Link>
+                        <Nav.Link as={Link} to={"/TodoListAll"}>Todo Page</Nav.Link>
+                        <Nav.Link as={Link} to={"/SearchPage"}>Search Page</Nav.Link>
                     </Nav>
                     </Navbar.Collapse>
                 </Container>

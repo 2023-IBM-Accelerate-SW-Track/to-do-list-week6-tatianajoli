@@ -12,9 +12,9 @@ import { Card, Grid, ListItemButton, ListItemText, Checkbox} from "@mui/material
 const Todos = ({ todos, deleteTodo }) => {
   const todoList = todos.length ? (
     todos.map((todo) => {
-      let color = "#ffffffff"
+      let color = "white"
       if (new Date(todo.duedate) < new Date()){
-        color = 'red'
+        color = "#fc4eae"
       }
       console.log(color)
       return (
@@ -25,7 +25,7 @@ const Todos = ({ todos, deleteTodo }) => {
             current date/time {todo.date}. Also, the item's id is utilized in order to correctly delete an item from the Todo list*/}
             <ListItemButton component="a" href="#simple-list">
               <Checkbox style={{paddingLeft:0}} color="primary" onClick={() => deleteTodo(todo.id)}/>
-              <ListItemText primary={todo.content} secondary={todo.duedate}/>
+              <ListItemText primary={todo.content} secondary={todo.duedate.toLocaleString("en-US")}/>
             </ListItemButton>
           </Card>
         </Grid>

@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, createTheme, ThemeProvider } from "@mui/material";
 import Axios from "axios";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#801aad',
+    },
+  },
+});
 
 class SearchTodo extends Component {
   
@@ -17,8 +25,23 @@ class SearchTodo extends Component {
   
 
   handleSubmit = (e) => {
-    //Begin Here
+    e.preventDefault();  
+    // HTTP Client to send a GET request
+    Axios({
+    method: "GET",
+    url: "http://localhost:8080/get/searchitem",
+    headers: {
+        "Content-Type": "application/json" 
+    },
+    params: {
+        taskname: this.state.content
+    }
+    }).then(res => {
+    this.setState({
+        tmpdata: JSON.stringify(res.data),
+        });
 
+    });
   };
   
   render() {
@@ -27,21 +50,22 @@ class SearchTodo extends Component {
         <form onSubmit={this.handleSubmit}>
           <TextField
             id="search-item-input"
-            label="Search for ToDo Item"
+            label="Search for Todo Item"
             variant="outlined"
             onChange={this.handleChange}
             value={this.state.value}
           /> 
+          <ThemeProvider theme={theme}>
           <Button
-            id="search-item-button"
-            name='submit'
-            style={{ marginLeft: "10px",marginTop:10 }}
+            style={{ marginLeft: "10px" }}
             onClick={this.handleSubmit}
             variant="contained"
             color="primary"
+            data-testid="new-item-button"
           >
             Search
           </Button>
+        </ThemeProvider>
         </form>
         <div>{this.state.tmpdata}</div>
       </div>
